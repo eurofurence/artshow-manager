@@ -1,6 +1,6 @@
-import tailwindcss from '@tailwindcss/vite';
 import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
 			csp: {
 				directives: {
 					'default-src': ['self'],
-					'img-src': ['self', 'blob:', 'data:'],
+					'img-src': ['self', 'blob:', 'data:', 's3.eurofurence.org'],
 					'object-src': ['none'],
 					'script-src': ['strict-dynamic'],
 					'base-uri': ['none'],

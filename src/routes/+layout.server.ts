@@ -4,7 +4,6 @@ export const load: LayoutServerLoad = async ({ setHeaders, isDataRequest }) => {
 	if (!isDataRequest)
 		try {
 			setHeaders({
-				'cross-origin-embedder-policy': 'require-corp',
 				'cross-origin-opener-policy': 'same-origin',
 
 				'x-frame-options': 'DENY',
