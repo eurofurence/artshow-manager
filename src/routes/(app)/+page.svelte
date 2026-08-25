@@ -1,3 +1,3 @@
 <svelte:head>
-    <title>Eurofurence Art Show</title>
+	<title>Eurofurence Art Show</title>
 </svelte:head>
