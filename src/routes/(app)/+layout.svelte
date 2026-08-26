@@ -22,7 +22,7 @@
 		{
 			name: 'Exhibits',
 			icon: faLandmark,
-			href: '/exhibit'
+			href: '/exhibits'
 		},
 		{
 			name: 'Bidding',
@@ -51,15 +51,13 @@
 
 <div class="min-h-screen lg:grid lg:grid-cols-[18rem_1fr]">
 	<!-- sidebar backdrop -->
-	<button
-		type="button"
-		aria-label="Close sidebar"
-		onclick={() => (sidebarOpen = false)}
+	<div
 		class={[
 			'fixed inset-0 z-40 bg-black/75 transition-opacity lg:hidden',
 			sidebarOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
 		]}
-	></button>
+		onclick={() => (sidebarOpen = false)}
+	></div>
 
 	<!-- sidebar -->
 	<aside

@@ -7,21 +7,19 @@ export async function handle({ event, resolve }) {
 		headers: event.request.headers
 	});
 
-	event.locals.user = {
-		name: 'Valaphee',
-		image:
-			'https://s3.eurofurence.org/identity-avatars/SbKrbp8mDXQvNmBSWVzGh4T9W54InDIPFPAiCWzI.webp'
-	}; // TODO
-
 	if (session) {
 		event.locals.user = session.user;
 		event.locals.session = session.session;
 	}
 
-	return svelteKitHandler({
+	const response = await svelteKitHandler({
 		event,
 		resolve,
 		auth,
 		building
 	});
+
+	response.headers.set('x-content-type-options', 'nosniff');
+
+	return response;
 }
