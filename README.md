@@ -1,4 +1,4 @@
-# Art Show Manager 2.0
+# artshow.eurofurence.org
 
 ## Developing
 

@@ -6,6 +6,7 @@
 		faGavel,
 		faHome,
 		faLandmark,
+		faShoppingBag,
 		faTag,
 		faXmark
 	} from '@fortawesome/free-solid-svg-icons';
@@ -33,6 +34,11 @@
 			name: 'Pricing',
 			icon: faTag,
 			href: '/pricing'
+		},
+		{
+			name: 'Handout',
+			icon: faShoppingBag,
+			href: '/handout'
 		}
 	];
 
@@ -62,8 +68,7 @@
 	<!-- sidebar -->
 	<aside
 		class={[
-			'fixed inset-y-0 left-0 z-50 w-72 bg-primary-600 text-white transition-transform',
-			'lg:sticky lg:top-0 lg:z-auto lg:h-screen lg:w-auto lg:translate-x-0',
+			'fixed inset-y-0 left-0 z-50 w-72 bg-primary-600 text-white transition-transform lg:translate-x-0',
 			sidebarOpen ? 'translate-x-0' : '-translate-x-full'
 		]}
 	>
@@ -71,7 +76,7 @@
 			<div class="flex h-16 items-center gap-3">
 				<Icon class="h-9 w-9" icon={efEmblem} />
 
-				<span class="flex-1 font-semibold">Art Show Manager</span>
+				<span class="flex-1 font-semibold">Eurofurence Art Show</span>
 
 				<button
 					aria-label="Close sidebar"
@@ -109,7 +114,7 @@
 		</div>
 	</aside>
 
-	<main class="min-w-0">
+	<main class="min-w-0 lg:ml-72">
 		<header class="flex h-16 items-center px-4 shadow-sm lg:hidden">
 			<button aria-label="Open sidebar" class="rounded-md p-2" onclick={() => (sidebarOpen = true)}>
 				<Icon class="h-5 w-5" icon={faBars} />
