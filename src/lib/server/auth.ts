@@ -35,6 +35,16 @@ export default betterAuth({
 		}),
 		sveltekitCookies(getRequestEvent)
 	],
+	user: {
+		additionalFields: {
+			badgeNumber: {
+				type: 'number',
+				required: false,
+				input: false,
+				returned: true
+			}
+		}
+	},
 	advanced: {
 		database: {
 			generateId: 'uuid'

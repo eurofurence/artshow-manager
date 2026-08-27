@@ -8,15 +8,15 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const exhibits = await sql<
 		{
 			id: number;
-			title: string;
-			artist: string;
+			exhibition_space_id: number;
+			name: string;
 		}[]
 	>`
-		SELECT exhibit.id, title, artist
+		SELECT exhibit.id, exhibition_space_id, name
 		FROM exhibit
-					 JOIN exhibition_space
-								ON exhibition_space.id = exhibit.exhibition_space_id
-		WHERE exhibition_space.exhibitor_id = ${user.id}
+			JOIN exhibition_space
+				ON exhibition_space.id = exhibition_space_id
+		ORDER BY exhibition_space_id
 	`;
 
 	return {

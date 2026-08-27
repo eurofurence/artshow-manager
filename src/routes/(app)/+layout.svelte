@@ -3,7 +3,6 @@
 	import { efEmblem } from '#lib/icons.ts';
 	import {
 		faBars,
-		faGavel,
 		faHome,
 		faLandmark,
 		faMoneyBill,
@@ -25,11 +24,6 @@
 			name: 'Exhibits',
 			icon: faLandmark,
 			href: '/exhibits'
-		},
-		{
-			name: 'Bidding',
-			icon: faGavel,
-			href: '/bidding'
 		},
 		{
 			name: 'Pricing',
