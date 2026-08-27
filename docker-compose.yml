@@ -12,11 +12,16 @@ services:
     environment:
       DATABASE_URL: postgresql://artshow:${POSTGRES_PASSWORD}@database:5432/artshow
 
+      S3_URL: ${S3_URL}
+
       BETTER_AUTH_URL: ${BETTER_AUTH_URL}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
 
-      OAUTH_CLIENT_ID: ${OAUTH_CLIENT_ID}
-      OAUTH_CLIENT_SECRET: ${OAUTH_CLIENT_SECRET}
+      IDP_URL: ${IDP_URL}
+      IDP_CLIENT_ID: ${IDP_CLIENT_ID}
+      IDP_CLIENT_SECRET: ${IDP_CLIENT_SECRET}
+
+      ATTSRV_URL: ${ATTSRV_URL}
 
     depends_on:
       database:
@@ -25,6 +30,9 @@ services:
   database:
     image: postgres:18
     restart: unless-stopped
+
+    ports:
+      - '5432:5432'
 
     environment:
       POSTGRES_USER: artshow

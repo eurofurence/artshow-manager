@@ -11,6 +11,7 @@ FROM base AS build
 COPY --from=build-deps /usr/src/app/node_modules ./node_modules
 
 COPY . .
+RUN cp ./.env.example ./.env
 
 ENV NODE_ENV=production
 

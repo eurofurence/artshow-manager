@@ -3,10 +3,22 @@ import { building } from '$app/env';
 import * as z from 'zod';
 
 export const variables = defineEnvVars({
-	OAUTH_CLIENT_ID: {
+	DATABASE_URL: {
 		schema: building ? z.optional(z.string()) : z.string()
 	},
-	OAUTH_CLIENT_SECRET: {
+	S3_URL: {
+		public: true
+	},
+	IDP_URL: {
+		schema: building ? z.optional(z.string()) : z.string()
+	},
+	IDP_CLIENT_ID: {
+		schema: building ? z.optional(z.string()) : z.string()
+	},
+	IDP_CLIENT_SECRET: {
+		schema: building ? z.optional(z.string()) : z.string()
+	},
+	ATTSRV_URL: {
 		schema: building ? z.optional(z.string()) : z.string()
 	}
 });

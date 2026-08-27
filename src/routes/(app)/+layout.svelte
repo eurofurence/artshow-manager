@@ -6,6 +6,7 @@
 		faGavel,
 		faHome,
 		faLandmark,
+		faMoneyBill,
 		faShoppingBag,
 		faTag,
 		faXmark
@@ -36,6 +37,11 @@
 			href: '/pricing'
 		},
 		{
+			name: 'Payment',
+			icon: faMoneyBill,
+			href: '/payment'
+		},
+		{
 			name: 'Handout',
 			icon: faShoppingBag,
 			href: '/handout'
@@ -55,7 +61,7 @@
 	}}
 />
 
-<div class="min-h-screen lg:grid lg:grid-cols-[18rem_1fr]">
+<div class="min-h-screen">
 	<!-- sidebar backdrop -->
 	<div
 		class={[
