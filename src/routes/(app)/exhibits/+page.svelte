@@ -6,8 +6,18 @@
 
 	let { data } = $props();
 
+	let exhibitQuery = $state('');
+	let filteredExhibits = $derived(
+		exhibitQuery.trim()
+			? data.exhibits.filter(
+					(exhibit) =>
+						String(exhibit.id) === exhibitQuery.trim() ||
+						exhibit.name.toLowerCase().includes(exhibitQuery.trim().toLowerCase())
+				)
+			: data.exhibits
+	);
 	let groupedExhibits = $derived(
-		Object.entries(Object.groupBy(data.exhibits, (exhibit) => exhibit.exhibition_space_id))
+		Object.entries(Object.groupBy(filteredExhibits, (exhibit) => exhibit.exhibition_space_id))
 	);
 </script>
 
@@ -20,6 +30,7 @@
 
 	<div class="flex items-center gap-3">
 		<Input
+			bind:value={exhibitQuery}
 			autocomplete="off"
 			autofocus
 			class="w-full"
@@ -44,19 +55,22 @@
 		'[&_td]:px-2 [&_td]:text-sm [&_td]:whitespace-nowrap'
 	]}
 >
+	<colgroup>
+		<col class="w-40" />
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr class="bg-gray-50">
-			<th scope="col">#</th>
+			<th scope="col"></th>
 			<th scope="col">Name</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		{#each groupedExhibits as [exhibitionSpaceId, exhibits]}
+		{#each groupedExhibits as [exhibitionSpaceId, exhibits] (exhibitionSpaceId)}
 			<tr class="bg-gray-50">
-				<th scope="rowgroup" colspan="2">
-					Panel {exhibitionSpaceId}
-				</th>
+				<th scope="rowgroup" colspan="2">Space {exhibitionSpaceId}</th>
 			</tr>
 
 			{#each exhibits as exhibit (exhibit.id)}

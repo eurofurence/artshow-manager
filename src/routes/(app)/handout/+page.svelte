@@ -1,10 +1,14 @@
 <script lang="ts">
 	import Input from '#lib/components/Input.svelte';
+	import { getHandoutExhibits } from '../handout.remote.ts';
 
-	let { data } = $props();
+	let badgeNumber = $state('');
 
+	let exhibits = $derived(badgeNumber ? getHandoutExhibits(parseInt(badgeNumber)) : undefined);
 	let groupedExhibits = $derived(
-		Object.entries(Object.groupBy(data.exhibits, (exhibit) => exhibit.exhibition_space_id))
+		Object.entries(
+			Object.groupBy(exhibits?.current ?? [], (exhibit) => exhibit.exhibition_space_id)
+		)
 	);
 </script>
 
@@ -15,9 +19,17 @@
 <div class="space-y-4 border-b border-gray-200 p-6">
 	<h1 class="text-xl font-semibold text-gray-900">Handout</h1>
 
-	<Input autocomplete="off" autofocus placeholder="Scan badge..." type="search" />
+	<Input
+		bind:value={badgeNumber}
+		autocomplete="off"
+		autofocus
+		placeholder="Scan badge..."
+		type="search"
+	/>
 
-	<Input autocomplete="off" autofocus placeholder="Scan exhibits..." type="search" />
+	{#if badgeNumber}
+		<Input autocomplete="off" placeholder="Scan exhibits..." type="search" />
+	{/if}
 </div>
 
 <table
@@ -30,19 +42,22 @@
 		'[&_td]:px-2 [&_td]:text-sm [&_td]:whitespace-nowrap'
 	]}
 >
+	<colgroup>
+		<col class="w-40" />
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr class="bg-gray-50">
-			<th scope="col">#</th>
+			<th scope="col"></th>
 			<th scope="col">Name</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		{#each groupedExhibits as [exhibitionSpaceId, exhibits]}
+		{#each groupedExhibits as [exhibitionSpaceId, exhibits] (exhibitionSpaceId)}
 			<tr class="bg-gray-50">
-				<th scope="rowgroup" colspan="2">
-					Panel {exhibitionSpaceId}
-				</th>
+				<th scope="rowgroup" colspan="2">Space {exhibitionSpaceId}</th>
 			</tr>
 
 			{#each exhibits as exhibit (exhibit.id)}

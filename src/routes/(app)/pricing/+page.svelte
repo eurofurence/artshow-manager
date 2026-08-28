@@ -3,9 +3,20 @@
 
 	let { data } = $props();
 
-	let groupedExhibits = $derived(
-		Object.entries(Object.groupBy(data.exhibits, (exhibit) => exhibit.exhibition_space_id))
+	let exhibitId = $state('');
+	let filteredExhibits = $derived(
+		exhibitId.trim()
+			? data.exhibits.filter((exhibit) => String(exhibit.id) === exhibitId.trim())
+			: data.exhibits
 	);
+	let groupedExhibits = $derived(
+		Object.entries(Object.groupBy(filteredExhibits, (exhibit) => exhibit.exhibition_space_id))
+	);
+
+	let winningBidId = $state('');
+	let amount = $state<number | undefined>();
+
+	let needsAmount = $state(false);
 </script>
 
 <svelte:head>
@@ -15,19 +26,29 @@
 <div class="space-y-4 border-b border-gray-200 p-6">
 	<h1 class="text-xl font-semibold text-gray-900">Pricing</h1>
 
-	<Input autocomplete="off" autofocus placeholder="Scan exhibit..." type="search" />
+	<Input
+		bind:value={exhibitId}
+		autocomplete="off"
+		autofocus
+		placeholder="Scan exhibit..."
+		type="search"
+	/>
 
-	<div class="flex items-center gap-3">
-		<Input
-			autocomplete="off"
-			autofocus
-			class="w-full"
-			placeholder="Scan winning bid..."
-			type="search"
-		/>
+	{#if exhibitId}
+		<div class="flex gap-3">
+			<Input
+				bind:value={winningBidId}
+				autocomplete="off"
+				class="flex-1"
+				placeholder="Scan winning bid..."
+				type="search"
+			/>
 
-		<Input autocomplete="off" autofocus placeholder="Enter amount..." type="number" />
-	</div>
+			{#if needsAmount}
+				<Input bind:value={amount} autocomplete="off" placeholder="Enter amount..." type="number" />
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <table
@@ -40,19 +61,22 @@
 		'[&_td]:px-2 [&_td]:text-sm [&_td]:whitespace-nowrap'
 	]}
 >
+	<colgroup>
+		<col class="w-40" />
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr class="bg-gray-50">
-			<th scope="col">#</th>
+			<th scope="col"></th>
 			<th scope="col">Name</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		{#each groupedExhibits as [exhibitionSpaceId, exhibits]}
+		{#each groupedExhibits as [exhibitionSpaceId, exhibits] (exhibitionSpaceId)}
 			<tr class="bg-gray-50">
-				<th scope="rowgroup" colspan="2">
-					Panel {exhibitionSpaceId}
-				</th>
+				<th scope="rowgroup" colspan="2">Space {exhibitionSpaceId}</th>
 			</tr>
 
 			{#each exhibits as exhibit (exhibit.id)}

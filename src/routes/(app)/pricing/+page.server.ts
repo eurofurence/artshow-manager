@@ -12,10 +12,8 @@ export const load: PageServerLoad = async ({ locals }) => {
 			name: string;
 		}[]
 	>`
-		SELECT exhibit.id, exhibition_space_id, name
+		SELECT id, exhibition_space_id, name
 		FROM exhibit
-			JOIN exhibition_space
-				ON exhibition_space.id = exhibition_space_id
 		ORDER BY exhibition_space_id
 	`;
 

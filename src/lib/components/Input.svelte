@@ -4,6 +4,7 @@
 
 	let {
 		element = $bindable(),
+		value = $bindable(),
 		class: classValue,
 		before,
 		after,
@@ -35,6 +36,7 @@
 
 		<textarea
 			bind:this={element}
+			bind:value
 			{...restProps}
 			class="w-full resize-none border-none bg-transparent py-2 text-sm outline-none placeholder:text-gray-400"
 		></textarea>
@@ -56,6 +58,7 @@
 
 		<input
 			bind:this={element}
+			bind:value
 			{...restProps}
 			class="h-9 w-full border-none bg-transparent text-sm outline-none placeholder:text-gray-400"
 		/>
