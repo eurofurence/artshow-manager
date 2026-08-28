@@ -13,7 +13,7 @@ export const load: LayoutServerLoad = async ({ locals, request, url }) => {
 			}
 		});
 
-		redirect(303, result.url, { external: true });
+		redirect(303, result.url!, { external: true });
 	}
 
 	return {
