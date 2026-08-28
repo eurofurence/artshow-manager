@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Input from '#lib/components/Input.svelte';
+
 	let { data } = $props();
 
 	let groupedExhibits = $derived(
@@ -13,26 +15,18 @@
 <div class="space-y-4 border-b border-gray-200 p-6">
 	<h1 class="text-xl font-semibold text-gray-900">Pricing</h1>
 
-	<input
-		autocomplete="off"
-		autofocus
-		class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm transition-colors outline-none placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-		placeholder="Scan exhibit..."
-		type="search"
-	/>
+	<Input autocomplete="off" autofocus placeholder="Scan exhibit..." type="search" />
 
 	<div class="flex items-center gap-3">
-		<input
+		<Input
 			autocomplete="off"
-			class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm transition-colors outline-none placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+			autofocus
+			class="w-full"
 			placeholder="Scan winning bid..."
 			type="search"
 		/>
-		<input
-			class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-			placeholder="Enter amount..."
-			type="search"
-		/>
+
+		<Input autocomplete="off" autofocus placeholder="Enter amount..." type="number" />
 	</div>
 </div>
 

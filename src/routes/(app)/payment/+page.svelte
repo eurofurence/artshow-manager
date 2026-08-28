@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { faCheck } from '@fortawesome/free-solid-svg-icons';
 	import Icon from '#lib/components/Icon.svelte';
+	import Button from '#lib/components/Button.svelte';
+	import Input from '#lib/components/Input.svelte';
 
 	let { data } = $props();
 </script>
@@ -12,13 +14,7 @@
 <div class="space-y-4 border-b border-gray-200 p-6">
 	<h1 class="text-xl font-semibold text-gray-900">Payment</h1>
 
-	<input
-		autocomplete="off"
-		autofocus
-		class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm transition-colors outline-none placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-		placeholder="Scan badge..."
-		type="search"
-	/>
+	<Input autocomplete="off" autofocus placeholder="Scan badge..." type="search" />
 </div>
 
 <div class="space-y-6 p-6">
@@ -56,11 +52,8 @@
 		<span class="text-xl font-semibold tabular-nums">€0.00</span>
 	</div>
 
-	<button
-		class="flex w-full items-center justify-center gap-2 rounded-md bg-primary-600 p-3 font-semibold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-50"
-		type="button"
-	>
+	<Button class="w-full justify-center" type="button">
 		<Icon class="h-4 w-4" icon={faCheck} />
 		Mark €0.00 paid
-	</button>
+	</Button>
 </div>

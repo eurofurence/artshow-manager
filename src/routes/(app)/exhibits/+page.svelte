@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Icon from '#lib/components/Icon.svelte';
 	import { faPlus } from '@fortawesome/free-solid-svg-icons';
+	import Button from '#lib/components/Button.svelte';
+	import Input from '#lib/components/Input.svelte';
 
 	let { data } = $props();
 
@@ -17,21 +19,18 @@
 	<h1 class="text-xl font-semibold text-gray-900">Exhibits</h1>
 
 	<div class="flex items-center gap-3">
-		<input
+		<Input
 			autocomplete="off"
 			autofocus
-			class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm transition-colors outline-none placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+			class="w-full"
 			placeholder="Search exhibits..."
 			type="search"
 		/>
 
-		<button
-			class="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:cursor-not-allowed disabled:opacity-50"
-			type="button"
-		>
+		<Button class="px-3.5 py-2 text-sm" type="button">
 			<Icon class="h-4 w-4" icon={faPlus} />
 			Add exhibit
-		</button>
+		</Button>
 	</div>
 </div>
 
